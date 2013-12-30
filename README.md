@@ -1,3 +1,7 @@
+note from charle5: i ripped this off from the guy referenced below and modified for me. the main differences are:
+1. 10.8.x only instead of also 10.7.x
+2. wget has been replaced w/ curl (so this can be used on fresh installs)
+
 xcode-cli-install
 =================
 
@@ -7,17 +11,13 @@ Inspired by a [blog post](http://blog.smalleycreative.com/administration/automat
 I stored both xcode version in DropBox - so I hope I won't be forced to remove them, the reason they are there is that
 you cannot download without an Apple userid and pass which takes the juice out of automating a laptop boot strapping.
 
-If you just want the dmg's click on [Lion](https://www.dropbox.com/s/fnqgdilm0yddfc0/xcode462_cltools_10_76938260a.dmg) or [Mountain Lion](https://www.dropbox.com/s/hw45wvjxrkrl59x/xcode462_cltools_10_86938259a.dmg)
+If you just want the dmg's click on [Mountain Lion](https://dl.dropboxusercontent.com/u/16710641/command_line_tools_os_x_mountain_lion_for_xcode__october_2013.dmg)
 
 ## Usage [ when used standalone ]
-	sudo bash < <(curl -L https://raw.github.com/hagzag/xcode-cli-install/master/install.sh)
+	sudo bash < <(curl -L https://raw.github.com/charle5/xcode-cli-install/master/install.sh)
 ## Uninstalling [ when used standalone ]
-	sudo bash < <(curl -L https://raw.github.com/hagzag/xcode-cli-install/master/uninstall.sh)
+	sudo bash < <(curl -L https://raw.github.com/charle5/xcode-cli-install/master/uninstall.sh)
 **This is 1 of a series of tools/utils to automate your macosx workstation setup**
-
-At some stage I would do this with [Chef](http://www.opscode.com/chef/), but there is a chicken & egg situation and on a new mac the cookbooks for dmg's where quite buggie.
-
-Bugs / Issues are welcome [here](https://github.com/hagzag/xcode-cli-install/issues)
 
 ## License 
 (The MIT License)

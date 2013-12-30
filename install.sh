@@ -15,23 +15,14 @@ check_root() {
 detect_osx_version() {
   result=`sw_vers -productVersion`
 
-  if [[ $result =~ "10.7" ]]; then
-      osxversion="10.7"
-      osxvername="Lion"
-      cltools=xcode46cltools_10_76938132a.dmg
-      mountpath="/Volumes/Command Line Tools (Lion)"
-      mpkg="Command Line Tools (Lion).mpkg"
-      pkg_url="https://www.dropbox.com/s/fnqgdilm0yddfc0/xcode462_cltools_10_76938260a.dmg"
-      pkgmd5="ca48a44bfbf61d0dce9692ba4edb204f"
-      #downloaded from: https://developer.apple.com/downloads/
-  elif [[ $result =~ "10.8" ]]; then
+  if [[ $result =~ "10.8" ]]; then
       osxversion="10.8"
       osxvername="Mountain Lion"
-      cltools=xcode462_cltools_10_86938259a.dmg
+      cltools=command_line_tools_os_x_mountain_lion_for_xcode__october_2013.dmg
       mountpath="/Volumes/Command Line Tools (Mountain Lion)"
       mpkg="Command Line Tools (Mountain Lion).mpkg"
-      pkg_url="https://www.dropbox.com/s/hw45wvjxrkrl59x/xcode462_cltools_10_86938259a.dmg"
-      pkgmd5="90c5db99a589c269efa542ff0272fc28"
+      pkg_url="https://dl.dropboxusercontent.com/u/16710641/command_line_tools_os_x_mountain_lion_for_xcode__october_2013.dmg"
+      pkgmd5="514e307c6e7e0744b30f6e2d53e90f7a"
       #downloaded from: https://developer.apple.com/downloads/
   else
       echo -e "$error This machine is running an unsupported version of OS X" 1>&2
@@ -50,7 +41,7 @@ check_tools() {
 }
 
 download_tools () {
-  # Use wget to download the appropriate installer curl has some issues (or I couldn't find the flags :)
+  # i changed to curl from wget since wget isn't always on a fresh install
   if [ -f /tmp/$cltools ]; then
     # indirmd5=`md5 -q /tmp/$cltools`
     if [ `md5 -q /tmp/$cltools` = "${pkgmd5}" ]; then
@@ -59,7 +50,7 @@ download_tools () {
        rm -f /tmp/$cltools
     fi
   else
-    cd /tmp && wget $pkg_url -O ./$cltools
+    cd /tmp && curl "$pkg_url" -o "$cltools"
   fi
 }
 
